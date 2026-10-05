@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#173c35" />
+    <title>إدارة المخزون | معرض الغريب الاسمر للتمويل</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-shell">
+    <header class="admin-header"><div class="container admin-nav"><a class="brand admin-brand" href="/admin.html"><span class="brand-mark">غ</span><span class="brand-copy"><strong>معرض الغريب الاسمر</strong><small>للتمويل · إدارة المخزون</small></span></a><a class="admin-exit" href="/">العودة إلى المعرض <span aria-hidden="true">↗</span></a></div></header>
+    <main class="container admin-main">
+      <section id="login-section" class="admin-login hidden">
+        <div class="login-aside"><p class="eyebrow">معرض الغريب الاسمر للتمويل</p><h1>بيع وشراء.<br /><em>تبديل وأقساط.</em></h1><p>أضف السيارات وعدّل تفاصيلها، وسيظهر المخزون المتاح مباشرة في المعرض.</p><span class="admin-watermark">غ.</span></div>
+        <form id="login-form" class="admin-login-form"><p class="eyebrow">رمز دخول الإدارة</p><h2>دخول سريع</h2><p class="muted">أدخل الرمز الرقمي المكوّن من 5 أرقام.</p><label for="admin-pin">الرمز السري</label><input id="admin-pin" type="password" inputmode="numeric" pattern="[0-9]{5}" minlength="5" maxlength="5" autocomplete="one-time-code" aria-label="رمز الإدارة المكون من خمسة أرقام" required /><button class="button button-accent button-wide" type="submit">دخول لوحة الإدارة <span aria-hidden="true">←</span></button><p id="admin-login-message" class="form-message" aria-live="polite"></p></form>
+      </section>
+      <section id="dashboard" class="hidden">
+        <div class="admin-page-heading"><div><p class="eyebrow">معرض الغريب الاسمر للتمويل</p><h1>إدارة المخزون</h1><p class="muted">أضف سيارة إلى المعرض أو حدّث تفاصيل المخزون الحالي.</p></div><button id="logout-btn" class="button button-outline" type="button">تسجيل الخروج</button></div>
+        <div class="admin-stats"><div><span>إجمالي السيارات</span><strong id="total-cars">0</strong></div><div><span>متاحة للعرض</span><strong id="available-cars">0</strong></div><div><span>مباعة</span><strong id="sold-cars">0</strong></div></div>
+        <div class="admin-workspace">
+          <form id="car-form" class="car-form admin-panel">
+            <input type="hidden" id="car-id" />
+            <div class="panel-heading"><div><p class="eyebrow">تفاصيل السيارة</p><h2 id="form-heading">إضافة سيارة</h2></div><span class="panel-step">01</span></div>
+            <div class="grid-2"><div><label for="brand">الماركة</label><input id="brand" maxlength="50" required placeholder="مثال: Toyota" /></div><div><label for="model">الموديل</label><input id="model" maxlength="60" required placeholder="مثال: Camry" /></div><div><label for="year">سنة الصنع</label><input id="year" type="number" min="1950" required /></div><div><label for="price">السعر (دولار)</label><input id="price" type="number" min="1" step="1" required /></div><div><label for="mileage">المسافة (كم)</label><input id="mileage" type="number" min="0" step="1" required /></div><div><label for="fuelType">نوع الوقود</label><select id="fuelType"><option value="Gasoline">بنزين</option><option value="Hybrid">هجين</option><option value="Diesel">ديزل</option><option value="Electric">كهرباء</option></select></div></div>
+            <div class="grid-2"><div><label for="status">حالة السيارة</label><select id="status"><option value="Available">متاحة</option><option value="Reserved">محجوزة</option><option value="Sold">مباعة</option></select></div><div><label for="images">روابط الصور</label><input id="images" type="text" placeholder="https://… (افصل الروابط بفاصلة)" /></div></div>
+            <div><label for="description">وصف مختصر</label><textarea id="description" rows="3" maxlength="1200" placeholder="أبرز التفاصيل التي تهم المشتري"></textarea></div>
+            <div class="form-actions"><button type="submit" id="save-btn" class="button button-accent">حفظ السيارة <span aria-hidden="true">←</span></button><button type="button" class="button button-light" id="reset-btn">إلغاء</button></div><p id="car-form-message" class="form-message" aria-live="polite"></p>
+          </form>
+          <section class="inventory-admin admin-panel"><div class="panel-heading"><div><p class="eyebrow">المخزون الحالي</p><h2>السيارات</h2></div><span class="panel-step">02</span></div><div class="table-wrap"><table><thead><tr><th>السيارة</th><th>السعر</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody id="admin-cars-table"></tbody></table></div></section>
+        </div>
+        <section class="admin-panel requests-panel">
+          <div class="panel-heading"><div><p class="eyebrow">متابعة العملاء</p><h2>طلبات السيارات</h2></div><span id="request-count" class="panel-count">0 طلب</span></div>
+          <div class="table-wrap"><table><thead><tr><th>السيارة</th><th>العميل</th><th>رقم التواصل</th><th>تاريخ الطلب</th><th>الحالة والإجراء</th></tr></thead><tbody id="admin-requests-table"></tbody></table></div>
+          <p id="requests-empty" class="requests-empty hidden">لا توجد طلبات سيارات حتى الآن.</p>
+          <p id="requests-message" class="form-message" aria-live="polite"></p>
+        </section>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

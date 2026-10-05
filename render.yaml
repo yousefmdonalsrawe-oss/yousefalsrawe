@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: car-showroom-mvp
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_PIN
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false

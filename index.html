@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f3ed" />
+    <title>معرض الغريب الاسمر للتمويل</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="storefront">
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="/" aria-label="معرض الغريب الاسمر للتمويل، الصفحة الرئيسية"><span class="brand-mark">غ</span><span class="brand-copy"><strong>معرض الغريب الاسمر</strong><small>للتمويل</small></span></a>
+        <nav class="main-nav" aria-label="التنقل الرئيسي"><a class="nav-current" href="#inventory">السيارات</a><a href="#about">عن المعرض</a></nav>
+        <div class="account-actions">
+          <span id="user-greeting" class="user-greeting hidden"></span>
+          <button id="open-login" class="button button-dark" type="button">تسجيل الدخول <span aria-hidden="true">↗</span></button>
+          <button id="customer-logout" class="button button-light hidden" type="button">تسجيل الخروج</button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="showcase container">
+        <div class="showcase-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> معرض الغريب الاسمر للتمويل</p>
+          <h1>بيع وشراء.<br /><em>والتمويل علينا.</em></h1>
+          <p class="showcase-intro">بيع، شراء، تبديل وأقساط. خيارات سيارات وتمويل تناسب احتياجك، مع تفاصيل واضحة من البداية.</p>
+          <a class="button button-accent" href="#inventory">تصفح السيارات <span aria-hidden="true">←</span></a>
+          <div class="showcase-note"><span class="note-number">01</span><span>سيارات نفحصها<br />قبل أن تصل إليك</span></div>
+        </div>
+        <div class="showcase-image" role="img" aria-label="سيارة رياضية أنيقة على طريق مفتوح"><div class="image-caption"><span>مختارة هذا الأسبوع</span><span class="caption-rule"></span><span>01 / 03</span></div></div>
+        <div class="showcase-index">AUTO / 2026</div>
+      </section>
+      <section class="service-ribbon" aria-label="خدمات المعرض">
+        <div class="container service-ribbon-inner">
+          <p>كل ما تحتاجه<br />لسيارتك في مكان واحد</p>
+          <div class="service-item"><span>01</span><strong>بيع</strong></div>
+          <div class="service-item"><span>02</span><strong>شراء</strong></div>
+          <div class="service-item"><span>03</span><strong>تبديل</strong></div>
+          <div class="service-item"><span>04</span><strong>أقساط</strong></div>
+        </div>
+      </section>
+      <section id="inventory" class="inventory-section">
+        <div class="container">
+          <div class="inventory-heading"><div><p class="eyebrow">تصفّح المخزون</p><h2>سيارات تستحق التجربة</h2></div><p class="inventory-description">معلومات واضحة ومواصفات أساسية تساعدك تقارن وتختار براحتك.</p></div>
+          <div class="inventory-tools">
+            <label class="search-field"><span aria-hidden="true">⌕</span><input id="car-search" type="search" placeholder="ابحث عن الماركة أو الموديل" aria-label="ابحث عن سيارة" /></label>
+            <label class="filter-field"><span>نوع الوقود</span><select id="fuel-filter" aria-label="تصفية حسب نوع الوقود"><option value="all">الكل</option><option value="Gasoline">بنزين</option><option value="Petrol">بنزين</option><option value="Hybrid">هجين</option><option value="Diesel">ديزل</option><option value="Electric">كهربائية</option></select></label>
+            <label class="filter-field"><span>الترتيب</span><select id="sort-cars" aria-label="ترتيب السيارات"><option value="newest">الأحدث</option><option value="price-asc">السعر: الأقل أولاً</option><option value="price-desc">السعر: الأعلى أولاً</option><option value="year-desc">سنة الصنع</option></select></label>
+            <span id="results-count" class="results-count"></span>
+          </div>
+          <div id="cars-grid" class="cars-grid" aria-live="polite"></div>
+        </div>
+      </section>
+      <section id="about" class="about-band"><div class="container about-inner"><span class="about-symbol">غ</span><p>بيع · شراء · تبديل · أقساط<br /><strong>معرض الغريب الاسمر للتمويل</strong></p><span class="about-signoff">سيارتك وخيار تمويلك في مكان واحد</span></div></section>
+    </main>
+    <footer class="site-footer"><div class="container"><span>معرض الغريب الاسمر للتمويل</span><span>بيع · شراء · تبديل · أقساط</span></div></footer>
+    <dialog id="login-dialog" class="login-dialog" aria-labelledby="login-title">
+      <button id="close-login" class="dialog-close" type="button" aria-label="إغلاق">×</button>
+      <div class="dialog-brand"><span class="brand-mark">غ</span><span class="brand-copy"><strong>معرض الغريب الاسمر</strong><small>للتمويل</small></span></div>
+      <p class="eyebrow">حسابك في المعرض</p><h2 id="login-title">أهلاً بك، من هنا تبدأ.</h2>
+      <p class="dialog-copy">سجّل الدخول لتحفظ اختياراتك وتتابع سياراتك المفضلة.</p>
+      <div id="google-button" class="google-button-slot"></div>
+      <p id="google-status" class="form-message" aria-live="polite">يتم تجهيز تسجيل Google…</p>
+      <p class="privacy-note">نستخدم بريدك للتعرّف على حسابك فقط.</p>
+    </dialog>
+    <dialog id="car-request-dialog" class="login-dialog" aria-labelledby="request-dialog-title">
+      <button id="close-request" class="dialog-close" type="button" aria-label="إغلاق">×</button>
+      <p class="eyebrow">طلب سيارة</p>
+      <h2 id="request-dialog-title">أرسل طلبك للمعرض</h2>
+      <p id="request-car-name" class="dialog-copy"></p>
+      <form id="car-request-form" class="request-form">
+        <label for="request-phone">رقم الهاتف مع رمز الدولة <span>إلزامي</span></label>
+        <input id="request-phone" type="tel" inputmode="tel" autocomplete="tel" minlength="7" maxlength="16" pattern="\+?[0-9]{7,15}" title="أدخل رمز الدولة والأرقام فقط، من دون مسافات أو فواصل" placeholder="مثال: +962790000000" required />
+        <p class="phone-required-note">اكتب رمز الدولة والأرقام فقط، من دون مسافات أو فواصل. لن يُرسل الطلب من دون رقم صحيح.</p>
+        <label for="request-note">ملاحظة للمعرض <span>اختياري</span></label>
+        <textarea id="request-note" rows="3" maxlength="500" placeholder="وقت مناسب للتواصل أو استفسار مختصر"></textarea>
+        <button class="button button-accent button-wide" type="submit">إرسال الطلب <span aria-hidden="true">←</span></button>
+        <p id="request-message" class="form-message" aria-live="polite"></p>
+      </form>
+    </dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
